@@ -1,0 +1,42 @@
+{% set version = "0.12" %}
+{% set sha256 = "85f30618451bc8d80abceece80efee1a9fb1f4243b7fc89b99f72e3fbc016e4f" %}
+
+
+package:
+  name: andi
+  version: '{{version}}'
+
+build:
+  number: 3
+
+source:
+  url: https://github.com/EvolBioInf/andi/releases/download/v{{ version }}/andi-{{ version }}.tar.gz
+  sha256: dba29ced86bb8160b6755eb69e30f6faff7b0e6588b8239faeb67437264d5451
+
+requirements:
+  build:
+  - {{ compiler('c') }}
+  - libdivsufsort
+  - gsl
+  - openblas
+
+  run:
+  - libdivsufsort
+  - gsl
+  - openblas
+
+test:
+  commands:
+    - andi -h
+
+about:
+  home: https://github.com/evolbioinf/andi/
+  license: GPL-3.0
+  license_family: GPL
+  license_file: COPYING
+  summary: Efficient Estimation of Evolutionary Distances
+
+extra:
+  identifiers:
+    - biotools:andi
+    - doi:10.1093/bioinformatics/btu815

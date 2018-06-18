@@ -1,55 +1,40 @@
+{% set name = "ncbi-genome-download" %}
+{% set version = "0.2.6" %}
+
 package:
-  name: ncbi-genome-download
-  version: "0.1.8"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  fn: ncbi-genome-download-0.1.8.tar.gz
-  url: https://files.pythonhosted.org/packages/e5/22/2e9ddf777f5f1bca4c08fa402ede453f8edfe225981230100257a4fead85/ncbi-genome-download-0.1.8.tar.gz
-  md5: 4ec3d01a93d03c67d1afdd9bc836e409
-#  patches:
-   # List any patch files here
-   # - fix.patch
+  url: https://pypi.io/packages/source/n/ncbi-genome-download/ncbi-genome-download-{{ version }}.tar.gz
+  sha256: 5a532435ea5f68f28ef7e21ca75d349edf5eac3f25ca44378cd311338c8b79c5
 
 build:
-  # noarch_python: True
-  # preserve_egg_dir: True
+  noarch: python
   entry_points:
-    # Put any entry points (scripts to be generated automatically) here. The
-    # syntax is module:function.  For example
-    #
-    # - ncbi-genome-download = ncbi-genome-download:main
-    #
-    # Would create an entry point called ncbi-genome-download that calls ncbi-genome-download.main()
-
     - ncbi-genome-download=ncbi_genome_download.__main__:main
-
-  # If this is a new build for the same version, increment the build
-  # number. If you do not include this key, it defaults to 0.
-  # number: 1
+    - ngd=ncbi_genome_download.__main__:main
+  number: 1
 
 requirements:
-  build:
+  host:
     - python
     - setuptools
-    - requests
+    - requests >=2.4.3
+    - enum34  # [py27]
 
   run:
     - python
-    - requests
+    - requests >=2.4.3
+    - enum34  # [py27]
 
 test:
-  # Python imports
   imports:
     - ncbi_genome_download
 
   commands:
-    # You can put test commands to be run here.  Use this to test that the
-    # entry points work.
-
     - ncbi-genome-download --help
-
-  # You can also put a file called run_test.py in the recipe that will be run
-  # at test time.
+    - ngd --help
 
   requires:
     - coverage
@@ -57,14 +42,10 @@ test:
     - pytest-cov
     - pytest-mock
     - requests-mock
-    # Put any additional test requirements here.  For example
-    # - nose
 
 about:
   home: https://github.com/kblin/ncbi-genome-download/
   license: Apache Software License
   summary: 'Download genome files from the NCBI FTP server.'
+  license_family: Apache
 
-# See
-# http://docs.continuum.io/conda/build.html for
-# more information about meta.yaml

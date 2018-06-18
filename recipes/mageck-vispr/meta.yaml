@@ -1,18 +1,21 @@
+{% set version = "0.5.4" %}
+
 package:
   name: mageck-vispr
-  version: "0.5.2"
+  version: {{ version }}
 
 source:
-  git_url: https://bitbucket.org/liulab/mageck-vispr.git
-  git_rev: v0.5.2
+  url: https://bitbucket.org/liulab/mageck-vispr/get/v{{ version }}.tar.gz
+  md5: e993c8154f2897f5d1dafd5cc4850abf
 
 build:
   skip: True  # [py27]
+  number: 1
   entry_points:
     - mageck-vispr = mageck_vispr.cli:main
 
 requirements:
-  build:
+  host:
     - python
     - setuptools
     - jinja2 >=2.8

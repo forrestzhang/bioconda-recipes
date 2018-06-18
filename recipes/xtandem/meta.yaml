@@ -1,0 +1,37 @@
+about:
+  home: http://www.thegpm.org/TANDEM/index.html
+  license: Artistic License
+  summary: X! Tandem open source is software that can match tandem mass spectra with peptide sequences, in a process that has come to be known as protein identification
+
+package:
+  name: xtandem
+  version: 15.12.15.2
+
+build:
+  number: 2
+  skip: False
+
+source:
+  url: https://depot.galaxyproject.org/software/xtandem/xtandem_15.12.15.2_src_all.zip
+  md5: 40058cd84fc3f56d671d32ff393f7aa3
+  patches:
+    - makefile.patch
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - zlib
+    - expat
+  run:
+    - zlib
+    - expat
+
+test:
+  commands:
+    - xtandem help 2>&1 | grep 'TANDEM'
+
+extra:
+  identifiers:
+    - biotools:xtandem
+    - doi:10.1093/bioinformatics/bth092

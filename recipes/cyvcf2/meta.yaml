@@ -1,33 +1,34 @@
+{% set name = "cyvcf2" %}
+{% set version = "0.8.4" %}
+{% set sha256hash = "ab1a04a69e50d0d1dbabd5fd498e6f968dfa768f6c77096037318c31162b2360" %}
+
 package:
-  name: cyvcf2
-  version: '0.5.3'
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  fn: cyvcf2-0.5.3.tar.gz
-  url: https://pypi.python.org/packages/d8/eb/ace70f60162207c7ee83f48e49b46054e3332042e0d04411ccfc9d35731c/cyvcf2-0.5.3.tar.gz
-  md5: 164a5f57c616dc5ccdc8a447c5921697
+  url: https://github.com/brentp/cyvcf2/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256hash }}
 
 build:
-  number: 0
+  number: 3
 
 requirements:
   build:
+    - {{ compiler('c') }}
+  host:
     - python
     - setuptools
     - cython
     - numpy
-    - gcc
     - zlib
-    - cython
 
   run:
     - python
     - numpy
-    - matplotlib
-    - seaborn
-    - pandas
-    - libgcc
     - zlib
+    - coloredlogs
+    - click
 
 test:
   imports:

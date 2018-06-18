@@ -1,36 +1,52 @@
 package:
   name: hicexplorer
-  version: '1.1a'
+  version: '2.1.4'
 
 source:
-  fn: a9ef5aa2b7ae2a7b57f7bfba2a63c47c95bb902c.tar.gz
-  url: https://github.com/maxplanck-ie/HiCExplorer/archive/a9ef5aa2b7ae2a7b57f7bfba2a63c47c95bb902c.tar.gz
+  url: https://github.com/deeptools/HiCExplorer/archive/2.1.4.tar.gz
+  sha256: 83dec8e0388cb185a51fa6cfb055be084be0f8a2912bba18f5bc159d19831698
 
 build:
-  number: 0
-  skip: True # [not py27]
+  noarch: python
+  number: 2
+  skip: true  # [py3k]
 
 requirements:
-  build:
+  host:
     - python
     - setuptools
-    - numpy >=1.8.0
-    - scipy >=0.15.0
-    - matplotlib >=1.4.0
-    - pysam >=0.8.2
-    - bx-python >=0.7.2
-    - biopython
+    - numpy 1.13.*
+    - scipy 1.0.*
+    - matplotlib 2.1.*
+    - pysam
+    - intervaltree
+    - biopython >=1.68
     - pytables
+    - pybigwig
+    - pandas
+    - jinja2
+    - configparser >=3.5.*  # [not py>34]
+    - cooler <=0.7.6
+    - six
+    - future
+    - unidecode
   run:
     - python
-    - pybigwig >=0.2.3
-    - numpy >=1.8.0
-    - scipy >=0.15.0
-    - matplotlib >=1.4.0
-    - pysam >=0.8.2
-    - bx-python >=0.7.2
-    - biopython
+    - numpy 1.13.*
+    - scipy 1.0.*
+    - matplotlib 2.1.*
+    - pysam
+    - intervaltree
+    - biopython >=1.68
     - pytables
+    - pybigwig
+    - pandas
+    - jinja2
+    - configparser >=3.5.*  # [not py>34]
+    - cooler <=0.7.6
+    - six
+    - future
+    - unidecode
 
 test:
   imports:
@@ -41,6 +57,6 @@ test:
     - hicCorrelate --version
 
 about:
-  home: https://github.com/maxplanck-ie/HiCExplorer
+  home: https://github.com/deeptools/HiCExplorer
   license: GPL3
   summary: Set of programs to process, analyze and visualize Hi-C data

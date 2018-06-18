@@ -1,0 +1,28 @@
+package:
+  name: perl-array-utils
+  version: "0.5"
+
+build:
+  number: 1
+
+source:
+  url: http://cpan.metacpan.org/authors/id/Z/ZM/ZMIJ/Array/Array-Utils-0.5.tar.gz
+  md5: ac15e6dce2c7c9d1855ecab9eb00aee6
+
+requirements:
+  build:
+    - perl
+
+  run:
+    - perl
+
+test:
+  # Perl 'use' tests
+  imports:
+    - Array::Utils
+
+about:
+  home: http://metacpan.org/pod/Array::Utils
+  license: unknown
+  summary: 'small utils for array manipulation'
+

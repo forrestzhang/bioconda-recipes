@@ -1,0 +1,33 @@
+package:
+  name: gnuplot-py
+  version: "1.8"
+
+source:
+  url: http://prdownloads.sourceforge.net/gnuplot-py/gnuplot-py-1.8.tar.gz
+  md5: abd6f571e7aec68ae7db90a5217cd5b1
+
+build:
+  number: 1
+  skip: True # [py3k]
+
+requirements:
+  host:
+    - python
+    - numpy
+    - gnuplot
+
+  run:
+    - python
+    - numpy
+    - gnuplot
+
+test:
+  # Python imports
+  imports:
+    - Gnuplot
+
+about:
+  home: http://gnuplot-py.sourceforge.net
+  license: LGPL
+  summary: 'A Python interface to the gnuplot plotting program.'
+  license_family: LGPL

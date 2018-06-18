@@ -1,18 +1,26 @@
+{% set version = "0.30.2" %}
+
 package:
   name: nextflow
-  version: "0.19.3"
+  version: {{ version }}
 
 build:
-  number: 0
+  number: 2
+  noarch: generic
 
 source:
-  fn: nextflow
-  url: https://github.com/nextflow-io/nextflow/releases/download/v0.19.3/nextflow
-  md5: 7db3f250648bb818853664dd9a270556
+  url: https://www.nextflow.io/releases/v{{ version }}/nextflow
+  sha256: b19bee5be61f3378e17adfd082120bb9a82df14058d218e006a45cd6f2fd8736
 
 requirements:
+  host:
+    - openjdk >=8,<=10
+    - coreutils
+    - curl
   run:
-    - java-jdk >=7.0
+    - openjdk >=8,<=10
+    - coreutils
+    - curl
 
 test:
   commands:

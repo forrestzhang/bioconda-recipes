@@ -1,16 +1,22 @@
+{% set version = "2.5.2" %}
+
 package:
   name: ddocent
-  version: '2.1'
+  version: '{{ version }}'
+
 source:
-  fn: jpuritz-version-2.1.zip
-  sha256: 06f087e5a0ce094e6bea2ef0536d2605083550bdb6d74e0fc2ed99d48cba46f0
-  url: https://github.com/jpuritz/dDocent/archive/jpuritz-version-2.1.zip
+  sha256: 4c0f6da7f0eea699f467a2727bf68b2881dee4ec860056ea3fa9fdd610f05408
+  url: https://github.com/jpuritz/dDocent/archive/v{{ version }}.zip
+
 build:
-  number: 0
+  number: 2
   skip: True # [osx]
+
 requirements:
   build:
-    - gcc #  [unix]
+    - {{ compiler('c') }}
+  host:
+    - coreutils >=8.22
     - curl
     - cmake
     - freebayes
@@ -19,20 +25,20 @@ requirements:
     - trimmomatic
     - mawk
     - bwa
-    - samtools ==0.1.19
-    - vcftools ==0.1.11
+    - samtools
+    - vcftools >=0.1.15
     - rainbow
-    - seqtk
     - cd-hit
-    - bedtools ==2.23.0
+    - bedtools >=2.26.0
     - vcflib
     - gnuplot
     - parallel
     - bamtools
-    - java-jdk
+    - openjdk
     - pear
+    - unzip
   run:
-    - libgcc # [unix]
+    - coreutils >=8.22
     - curl
     - cmake
     - freebayes
@@ -41,24 +47,24 @@ requirements:
     - trimmomatic
     - mawk
     - bwa
-    - samtools ==0.1.19
-    - vcftools ==0.1.11
+    - samtools
+    - vcftools >=0.1.15
     - rainbow
-    - seqtk
     - cd-hit
-    - bedtools ==2.23.0
+    - bedtools >=2.26.0
     - vcflib
     - gnuplot
     - parallel
     - bamtools
-    - java-jdk
+    - openjdk
     - pear
+    - unzip
+    - grep
 
 test:
-    commands:
-        - "dDocent --help"
+  commands:
+    - "dDocent --help"
 about:
-    home: "http://ddocent.wordpress.com/"
-    license: "The MIT License (MIT)"
-    summary: " dDocent is  an interactive bash wrapper to QC, assemble, map, and call SNPs from double digest RAD data"
-
+  home: "http://ddocent.com"
+  license: "The MIT License (MIT)"
+  summary: " dDocent is  an interactive bash wrapper to QC, assemble, map, and call SNPs from all types of RAD data"

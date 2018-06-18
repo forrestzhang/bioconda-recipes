@@ -1,0 +1,36 @@
+{% set version = "2018_04" %}
+
+package:
+  name: ngs-bits
+  version: {{ version }}
+
+build:
+  number: 1
+
+source:
+  git_rev: ngs-bits-{{ version }}.tgz
+  url: https://github.com/imgag/ngs-bits/releases/download/{{ version }}/ngs-bits-{{ version }}.tgz
+  sha256: a462403bed98de7c7b09558f61841ce5227c69721058ed356f4689795e07661b
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - bzip2
+    - xz
+    - zlib
+    - qt >=5.5.0
+    - htslib
+  run:
+    - bzip2
+    - xz
+    - zlib
+    - python
+    - matplotlib
+    - qt >=5.5.0
+    - htslib
+
+about:
+  home: https://github.com/imgag/ngs-bits
+  license: MIT license
+  summary: Short-read sequencing tools

@@ -1,0 +1,26 @@
+package:
+  name: perl-file-copy-recursive
+  version: '0.38'
+
+source:
+  url: https://cpan.metacpan.org/authors/id/D/DM/DMUEY/File-Copy-Recursive-0.38.tar.gz
+
+build:
+  number: 2
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - perl
+    - perl-app-cpanminus
+    - perl-module-build
+  run:
+    - perl
+
+test:
+  imports:
+    - File::Copy::Recursive
+
+about:
+  home: https://metacpan.org/pod/File::Copy::Recursive
+  license: Perl

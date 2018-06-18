@@ -1,0 +1,36 @@
+package:
+  name: scikits-datasmooth
+  version: "0.7.0"
+
+source:
+  url: https://github.com/jjstickel/scikit-datasmooth/releases/download/v0.7.0/scikit-datasmooth-0.7.0.tar.gz
+  sha256: d25f60f5618f9ec3533da197fd6bdd30ea90aebc8400b30b0127d739ad241060
+
+build:
+  noarch: python
+  number: 1
+  script: python -m pip install --no-deps --ignore-installed .
+
+requirements:
+  host:
+    - python
+    - pip
+    - numpy
+    - scipy
+    - cvxopt
+
+  run:
+    - python
+    - numpy
+    - scipy
+    - cvxopt
+
+test:
+  imports:
+    - scikits.datasmooth
+
+about:
+  home: https://github.com/jjstickel/scikit-datasmooth/
+  license: BSD
+  summary: Scikits data smoothing package
+  license_family: BSD

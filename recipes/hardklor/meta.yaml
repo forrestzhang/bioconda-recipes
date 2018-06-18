@@ -1,0 +1,26 @@
+{% set name = "hardklor" %}
+{% set version = "2.3.0" %}
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/mhoopmann/hardklor/archive/{{ version }}.tar.gz
+
+build:
+  number: 1
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  run:
+
+test:
+  commands:
+    - hardklor --help | grep "University of Washington"
+
+about:
+  home: https://github.com/mhoopmann/hardklor
+  license: Apache License, Version 2.0
+  summary: Analyze mass spectra

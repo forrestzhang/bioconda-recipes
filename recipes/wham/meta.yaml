@@ -1,25 +1,39 @@
 package:
   name: wham
-  version: '1.7.0.162'
+  version: '1.7.0.311'
 
 source:
-  git_url: https://github.com/jewmanchue/wham.git
-  git_rev: eef6cfa
+  # Needs Git for recursive bamtools retrieval:
+  git_url: https://github.com/zeeev/wham.git
+  git_rev: 4e8c9bee568211596cdc634d15600114e75d2619
+  md5: unneeded
 
 build:
-  number: 0
+  number: 2
   skip: True # [osx]
 
 requirements:
   build:
     - cmake
+    - {{ compiler('c') }}
+  host:
+    - git
+    - zlib
   run:
+    - zlib
 
 test:
   commands:
-    # - WHAM-GRAPHENING  -- returns an error code, no way to call just --help
+    - whamg --help 2>&1 | grep Version
+    - wham --help 2>&1 | grep WHAM-BAM
 
 about:
   home: https://github.com/jewmanchue/wham
   license: MIT
   summary: Structural variant detection and association testing
+
+extra:
+  skip-lints:
+    - uses_git_url
+  identifiers:
+    - biotools:Wham6216

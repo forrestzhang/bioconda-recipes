@@ -3,21 +3,18 @@ package:
   version: '1.55'
 
 source:
-  fn: Archive-Zip-1.55.tar.gz
   url: https://cpan.metacpan.org/authors/id/P/PH/PHRED/Archive-Zip-1.55.tar.gz
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
-    - gcc
-    - perl-threaded
-    - perl-app-cpanminus
+    - perl
     - perl-module-build
+    - perl-app-cpanminus
   run:
-    - libgcc
-    - perl-threaded
+    - perl
 
 about:
   home: https://metacpan.org/pod/Archive::Zip

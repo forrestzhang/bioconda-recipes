@@ -1,29 +1,38 @@
+{% set version = "2.4.7" %}
+{% set sha256 = "3dbb6c6b54a372193d8106ee5f59442a0d7535838812a0aade09e632e599e4ee" %}
+
 package:
   name: viennarna
-  version: 2.2.8
+  version: {{ version }}
 
 build:
-  number: 0
+  number: 4
 
 source:
-  fn: ViennaRNA-2.2.8.tar.gz
-  url: http://www.tbi.univie.ac.at/RNA/packages/source/ViennaRNA-2.2.8.tar.gz
-  sha256: 30c40b8da4635388da626a741edfd5173e5712703d7a2ef2905bf666731e302d
+  url: https://www.tbi.univie.ac.at/RNA/download/sourcecode/2_4_x/ViennaRNA-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
 
 requirements:
   build:
-    - gcc   # [linux]
-    - llvm  # [osx]
+    - {{ compiler('c') }}
+    - perl
+  host:
+    - python >3 # [linux]
   run:
-    - libgcc # [linux]
+    - python
 
 test:
   commands:
-   - RNAfold --version
-   - RNAplfold --version
+    - RNAalifold --version
+    - RNAeval    --version
+    - RNAfold    --version
+    - RNAplfold  --version
+    - RNAsubopt  --version
+    - RNAlocmin  --version
+    - kinwalker  --help >& /dev/null
 
 about:
   home: http://www.tbi.univie.ac.at/RNA/
-  license: MIT-like
+  license: custom
   license_file: COPYING
   summary: Vienna RNA package -- RNA secondary structure prediction and comparison

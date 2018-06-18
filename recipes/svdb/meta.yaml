@@ -1,0 +1,46 @@
+{% set version = "1.0.7" %}
+{% set sha256sum = "f7ca1cd7b1decae4f993a6c486d614cbd7a5b29b591630376623d04fdabd2876" %}
+
+package:
+  name: svdb
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/J35P312/SVDB/archive/SVDB-{{ version }}.tar.gz
+  sha256: "{{ sha256sum }}"
+
+  # patch not required beyond 1.0.7
+  patches:
+  - svdb.patch
+
+build:
+  skip: True  # [not py27]
+  number: 2
+
+  entry_points:
+  - svdb = svdb.__main__:main
+
+requirements:
+  host:
+  - cython
+  - python
+  - numpy
+  - scipy
+  - scikit-learn
+  # missing dependency of scipy
+
+  run:
+  - python
+  - numpy
+  - scipy
+  - scikit-learn
+  # missing dependency of scipy
+
+test:
+  commands:
+  - svdb --help
+
+about:
+  home: https://github.com/J35P312/SVDB
+  license: MIT
+  summary: 'structural variant database software'

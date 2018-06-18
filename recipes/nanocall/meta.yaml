@@ -1,30 +1,28 @@
 package:
   name: nanocall
-  version: "v0.6.13"
+  version: "v0.7.4"
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx]
 
 source:
   git_url: https://github.com/mateidavid/nanocall.git
-  git_rev: v0.6.13
+  git_rev: v0.7.4
 
 
 requirements:
   build:
-  - gcc # [not osx]
-  - llvm  # [osx]
+  - {{ compiler('c') }}
   - cmake
   - hdf5
 
   run:
-  - libgcc # [not osx]
   - hdf5
 
 test:
   commands:
-    - nanocall --version 
+    - nanocall --version
 
 about:
   home: https://github.com/mateidavid/nanocall

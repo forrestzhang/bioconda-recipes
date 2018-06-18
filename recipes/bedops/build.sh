@@ -1,6 +1,8 @@
 #!/bin/bash
 set -eu -o pipefail
-
-make
+unset CFLAGS
+unset CXXFLAGS
+make all SFLAGS=
+make install_all
 mkdir -p $PREFIX/bin
-cp applications/bed/*/bin/* $PREFIX/bin
+cp bin/* $PREFIX/bin

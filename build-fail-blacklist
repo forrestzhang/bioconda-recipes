@@ -1,0 +1,155 @@
+
+recipes/blast/2.2.21
+recipes/mothur/1.36.1
+
+# temporarily disabling metaprob to try to get past strange errors like:
+# https://travis-ci.org/bioconda/bioconda-recipes/jobs/250387447#L2087
+# recipes/metaprob
+
+# Added when updating CONDA_GSL from 1.16 to 2.2:
+
+# Cannot figure out why builds are failing:
+recipes/eigensoft
+# ea-utils' recipie has dead download link.  Needs update
+# to new github location
+recipes/ea-utils
+
+# error: ‘gsl_multifit_fdfsolver’ has no member named ‘J’ gsl_multifit_gradient(s->J, s->f, grad);
+recipes/lcfit
+
+# more temporary blacklisting to get other packages to run
+
+recipes/transcomb
+recipes/metaprob
+
+# tracking master branch
+recipes/frc
+
+
+#OSX failures - library loading
+recipes/r-pscbs/0.61.0
+
+# ERROR: cannot verify github.com's certificate, issued by ‘CN=DigiCert SHA2 Extended Validation Server CA,OU=www.digicert.com,O=DigiCert Inc,C=US’:
+recipes/transrate-tools
+
+recipes/openslide
+
+# warning: spurious network error (1 tries remaining): [12/-2] [77] Problem with the SSL CA cert (path? access rights?) (error setting certificate verify locations:
+recipes/rust-overlaps
+recipes/prosic
+
+# ./configure no such file or directory
+recipes/slang
+
+# CMake Error at build-common/cmake/VersionHelper.cmake:11 (list):
+recipes/somatic-sniper
+
+# linker errors
+recipes/soapec
+
+# Make file needs to be patched to find newer zlib?
+recipes/samtools/1.1
+
+# need to fix the download location, the checksum changes everytime
+recipes/osra/2.1.0
+
+# Configuring Compress-Raw-Zlib-2.069 ... OK
+# Building and testing Compress-Raw-Zlib-2.069 ... ! Installing . failed. See /root/.cpanm/work/1518682773.209/build.log for details. Retry with --force to force install it.
+# FAIL
+recipes/perl-compress-raw-zlib
+
+# osx failures
+recipes/breakdancer
+recipes/cgat-scripts
+recipes/perl-io-compress
+recipes/shorah
+recipes/smalt
+
+# zlib compilation problems
+recipes/trinity/2.1.1
+
+# non-standard test
+recipes/fermikit
+
+# libxml2.so, not found
+recipes/dcmtk
+
+
+# The following recipes are also found in other channels (notably conda-forge).
+# They are placed here on the blacklist until we can deal with them further.
+recipes/aenum
+recipes/intervaltree
+recipes/jemalloc
+recipes/jq
+recipes/lapack
+recipes/libdb
+recipes/loompy
+recipes/mysql-connector-c
+recipes/nasm
+recipes/netifaces
+recipes/nglview
+recipes/perl-text-soundex
+recipes/popt
+recipes/pysftp
+recipes/pytest-timeout
+recipes/python-levenshtein
+recipes/r-argumentcheck
+recipes/r-bio3d
+recipes/r-biomark
+recipes/r-cnogpro
+recipes/r-data.table/1.10.4
+recipes/r-deoptimr
+recipes/r-diptest
+recipes/r-diptest/0.75_7
+recipes/r-drc
+recipes/r-dynamictreecut
+recipes/r-gam
+recipes/r-gbm
+recipes/r-genabel
+recipes/r-genabel.data
+recipes/r-genenet
+recipes/r-giant
+recipes/r-gprofiler
+recipes/r-gpseq
+recipes/r-grimport
+recipes/r-gsalib
+recipes/r-gsmoothr
+recipes/r-haplo.stats
+recipes/r-ic10trainingdata
+recipes/r-icluster
+recipes/r-idr
+recipes/r-inlinedocs
+recipes/r-km.ci
+recipes/r-kmsurv
+recipes/r-kriging
+recipes/r-lsd
+recipes/r-maldiquant
+recipes/r-metarnaseq
+recipes/r-microseq
+recipes/r-mixomics
+recipes/r-mlgt
+recipes/r-mqtl
+recipes/r-pamr
+recipes/r-patpro
+recipes/r-pinfsc50
+recipes/r-plasmidprofiler
+recipes/r-precrec
+recipes/r-purbayes
+recipes/r-qiimer
+recipes/r-qtl
+recipes/r-rcircos
+recipes/r-readbrukerflexdata
+recipes/r-readmzxmldata
+recipes/r-rematch2
+recipes/r-rentrez
+recipes/r-robustrankaggreg
+recipes/r-rphylip
+recipes/r-seqinr
+recipes/r-smvar
+recipes/r-snpassoc
+recipes/r-solarius
+recipes/r-tfmpvalue
+recipes/r-xnomial
+recipes/regex
+recipes/scikit-bio
+recipes/xdg

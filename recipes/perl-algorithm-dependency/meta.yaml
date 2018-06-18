@@ -1,0 +1,35 @@
+package:
+  name: perl-algorithm-dependency
+  version: "1.110"
+
+build:
+  number: 1
+
+source:
+  url: http://cpan.metacpan.org/authors/id/A/AD/ADAMK/Algorithm-Dependency-1.110.tar.gz
+  md5: dc1dab2ac44c315caa092397423b1429
+
+requirements:
+  build:
+    - perl
+    - perl-app-cpanminus
+    - perl-pathtools
+    - perl-extutils-makemaker
+    - perl-test-classapi
+    - perl-scalar-list-utils
+    - perl-params-util
+    - perl-test-simple
+
+  run:
+    - perl
+    - perl-params-util
+    - perl-scalar-list-utils
+
+test:
+  imports:
+    - Algorithm::Dependency
+
+about:
+  home: http://metacpan.org/pod/Algorithm-Dependency
+  license: perl_5
+  summary: 'Base class for implementing various dependency trees'

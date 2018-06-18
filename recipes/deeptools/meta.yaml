@@ -1,31 +1,30 @@
 package:
   name: deeptools
-  version: '2.3.4'
+  version: '3.0.2'
 
 source:
-  fn: deepTools-2.3.4.tar.gz
-  url: https://pypi.python.org/packages/97/33/472a422d441d8992070e09737fbcc77f93061e824ed71eea4c95a1faf9e4/deepTools-2.3.4.tar.gz
-  md5: d59e3706321fe76aff5f5c6080f0f5f3
+  url: https://files.pythonhosted.org/packages/21/63/095615a9338c824dcc1496a302d04267c674175f0081e1ee2f897f33539f/deepTools-3.0.2.tar.gz
+  md5: 4553d9c828ba4b5b93ca387917649281
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
+    - {{ compiler('c') }}
+  host:
     - python
     - setuptools
-    - numpy >=1.8.0
-    - scipy >=0.17.0
-    - matplotlib >=1.4.0
-    - pysam >=0.8.2
-    - gcc
   run:
     - python
     - pybigwig >=0.2.3
-    - numpy >=1.8.0
+    - numpy >=1.9.0
     - scipy >=0.17.0
-    - matplotlib >=1.4.0
-    - pysam >=0.8.2
+    - matplotlib >=2.1.1
+    - pysam >=0.14.0
+    - py2bit >=0.2.0
+    - plotly >=1.9.0
+    - pandas
 
 test:
   imports:
@@ -38,3 +37,8 @@ about:
   home: https://github.com/fidelram/deepTools
   license: GPL3
   summary: A set of user-friendly tools for normalization and visualzation of deep-sequencing data
+
+extra:
+  identifiers:
+    - biotools:deeptools
+    - doi:10.1093/nar/gkw257

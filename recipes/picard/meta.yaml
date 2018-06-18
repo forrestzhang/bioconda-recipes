@@ -1,26 +1,26 @@
-# Migrated from BioBuilds recipe
-# https://anaconda.org/BioBuilds/picard
+{% set version = "2.18.7" %}
 
 package:
   name: picard
-  version: "2.5.0"
+  version: {{ version }}
 
 source:
-  fn: picard-tools-2.5.0.zip
-  url: https://github.com/broadinstitute/picard/releases/download/2.5.0/picard-tools-2.5.0.zip
-  md5: 0b9e2c9dc0043b5f8ef7b8f9b39780ae
+  url: https://github.com/broadinstitute/picard/releases/download/{{ version }}/picard.jar
+  sha256: 2e79e89b643aaeec24a77499231f6f85a0a91d30e663bdfdc8f7ac395ae5e502
 
 build:
-  number: 1
+  noarch: generic
+  number: 2
   skip: False
 
 requirements:
   run:
-    - java-jdk >=8
+    - openjdk >=8
+    - python
 
 test:
   commands:
-    - "picard 2>&1 | grep 'USAGE: PicardCommandLine'"
+    - "picard 2>&1 | grep USAGE:"
 
 about:
   home: "http://broadinstitute.github.io/picard/"

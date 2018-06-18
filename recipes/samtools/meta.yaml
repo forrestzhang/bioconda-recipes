@@ -1,32 +1,45 @@
-{% set version = "1.3.1" %}
+{% set version = "1.8" %}
 
 package:
   name: samtools
   version: {{ version }}
 
 build:
-  number: 2
-  skip: False
+  number: 5
 
 source:
-  fn: samtools-{{ version }}.tar.bz2
   url: https://github.com/samtools/samtools/releases/download/{{ version }}/samtools-{{ version }}.tar.bz2
-  md5: a7471aa5a1eb7fc9cc4c6491d73c2d88
+  sha256: c942bc1d9b85fd1b05ea79c5afd2805d489cd36b2c2d8517462682a4d779be16
 
 requirements:
   build:
-  - ncurses {{CONDA_NCURSES}}*
+  - {{ compiler('c') }}
+  host:
+  - ncurses
   - zlib
+  - bzip2
   - curl
+  - xz
+  - libdeflate
   run:
-  - ncurses {{CONDA_NCURSES}}*
+  - ncurses
   - zlib
+  - bzip2
   - curl
+  - xz
+  - libdeflate
 
 about:
   home: https://github.com/samtools/samtools
   license: MIT
   summary: Tools for dealing with SAM, BAM and CRAM files
+
 test:
   commands:
     - samtools --help
+    # test if https protocol works, if it doesnt samtools will fail with "Protocol not supported"
+    - samtools view 'https://example.com' 2>&1 | grep 'truncated file.' -q
+
+extra:
+  identifiers:
+    - biotools:samtools

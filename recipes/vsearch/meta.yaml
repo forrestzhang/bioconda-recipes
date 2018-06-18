@@ -1,21 +1,39 @@
+{% set name = "vsearch" %}
+{% set version = "2.7.0" %}
+{% set hash = "a50577ee89d3f663b40f5f6749c54801666faa0bb54c40bd0286bb823b5a4314" %}
+
 package:
-  name: vsearch
-  version: "2.0.3"
+  name: {{ name|lower }}
+  version: {{ version }}
+
 source:
-  git_url: https://github.com/torognes/vsearch.git
-  git_rev: v2.0.3
+  url: https://github.com/torognes/vsearch/archive/v{{ version }}.tar.gz
+  sha256: {{ hash }}
+
+build:
+  number: 2
+
 requirements:
   build:
     - automake
     - autoconf
     - m4
-    - gcc
-build:
-  skip: False
+    - {{ compiler('c') }}
+    - perl
+    - zlib
+  run:
+    - zlib
+
 test:
   commands:
-    - vsearch --version > /dev/null
+    - vsearch --version
+
 about:
   home: https://github.com/torognes/vsearch
   license: "dual-licensed under GPLv3+ or BSD 2-clause"
   summary: "a versatile open source tool for metagenomics (USEARCH alternative)"
+
+extra:
+  identifiers:
+    - biotools:vsearch
+    - doi:10.7717/peerj.2584

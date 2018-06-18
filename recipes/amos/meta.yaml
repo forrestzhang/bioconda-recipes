@@ -12,10 +12,9 @@ source:
   git_rev: 9bd658
 
 build:
-  number: 3
+  number: 4
   # OSX failing due to missing dependencies in OSX branch
-  skip: True # [osx]
-
+  skip: true  # [osx]
 
 test:
   commands:
@@ -23,24 +22,29 @@ test:
 
 requirements:
   build:
-    - gcc
+    - {{ compiler('c') }}
+  host:
     - zlib
-    - boost 
+    - boost
     - autoconf
+    - automake
     - blat
     - mummer
-    - perl-threaded
+    - perl
+    - perl-statistics-descriptive
+    - perl-xml-parser
+    - perl-dbi
+    - jellyfish
+    - python
+  run:
+    - mummer
+    - perl
     - perl-statistics-descriptive
     - perl-xml-parser
     - perl-dbi
     - jellyfish
     - python
 
-  run:
-    - mummer
-    - perl-threaded
-    - perl-statistics-descriptive
-    - perl-xml-parser
-    - perl-dbi
-    - jellyfish
-    - python
+extra:
+  identifiers:
+    - biotools:amos

@@ -1,0 +1,41 @@
+{% set version = "1.1.0.3" %}
+{% set sha256 = "de82ad6ee2b2fabd2cb513bfb353be6ec4e7d9d81681d78cca6ec1af4812a27a" %}
+
+package:
+  name: nanosim-h
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/N/NanoSim-H/NanoSim-H-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  number: 3
+  script: python -m pip install --no-deps --ignore-installed .
+
+requirements:
+  host:
+    - python
+    - pip
+    - numpy
+    - last
+    - r-base
+    - progressbar2
+  run:
+    - python
+    - numpy
+    - last
+    - r-base
+    - progressbar2
+
+test:
+  commands:
+    - nanosim-h -h
+    - nanosim-h-train -h
+    - curl "https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?db=nuccore&dopt=fasta&val=545778205&sendto=on" | nanosim-h -n 100 -
+
+about:
+  home: https://github.com/karel-brinda/NanoSim-H
+  license: GPLv3
+  summary: 'NanoSim-H is a simulator of Oxford Nanopore reads that captures the technology-specific features of ONT data, and allows for adjustments upon improvement of Nanopore sequencing technology.'

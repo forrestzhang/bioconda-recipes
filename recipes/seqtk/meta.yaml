@@ -3,18 +3,15 @@ package:
   version: 1.2
 
 source:
-  fn: v1.2.tar.gz
   url: https://github.com/lh3/seqtk/archive/v1.2.tar.gz
+  md5: 255ffe05bf2f073dc57abcff97f11a37
 
 build:
-  number: 0
-  skip: False
-
+  number: 2
 
 requirements:
   build:
-    - gcc   # [not osx]
-    - llvm  # [osx]
+    - {{ compiler('c') }}
     - zlib
   run:
     - zlib
@@ -28,3 +25,7 @@ about:
 test:
   commands:
     - seqtk seq
+
+extra:
+  identifiers:
+    - biotools:seqtk

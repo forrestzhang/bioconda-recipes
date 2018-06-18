@@ -1,40 +1,69 @@
+{% set version = "0.10.0" %}
+
 package:
   name: bioblend
-  version: '0.7.0'
+  version: {{ version }}
 
 source:
-  fn: bioblend-0.7.0.tar.gz
-  url: https://pypi.python.org/packages/source/b/bioblend/bioblend-0.7.0.tar.gz
-  md5: 9b91e764de795e81ae7d136218b3b07e
+  url: https://pypi.io/packages/source/b/bioblend/bioblend-{{ version }}.tar.gz
+  sha256: 96a98ddfdb3732458cf67dda3e92ba6919d1100c960c193d4f184f8378fbf266
 
 build:
-  skip: False
-  number: 0
+  noarch: python
+  number: 1
 
 requirements:
-  build:
+  host:
     - python
     - setuptools
-    - requests
+    - requests >=2.4.3,!=2.12.0,!=2.12.1
     - requests-toolbelt
-    - boto
+    - boto >=2.9.7
     - pyyaml
     - six
 
   run:
     - python
-    - requests
+    - requests >=2.4.3,!=2.12.0,!=2.12.1
     - requests-toolbelt
-    - boto
+    - boto >=2.9.7
     - pyyaml
     - six
 
 test:
   imports:
     - bioblend
+    - bioblend.cloudman
     - bioblend.galaxy
+    - bioblend.galaxy.config
+    - bioblend.galaxy.dataset_collections
+    - bioblend.galaxy.datasets
+    - bioblend.galaxy.datatypes
+    - bioblend.galaxy.folders
+    - bioblend.galaxy.forms
+    - bioblend.galaxy.ftpfiles
+    - bioblend.galaxy.genomes
+    - bioblend.galaxy.groups
+    - bioblend.galaxy.histories
+    - bioblend.galaxy.jobs
+    - bioblend.galaxy.libraries
+    - bioblend.galaxy.objects
+    - bioblend.galaxy.quotas
+    - bioblend.galaxy.roles
+    - bioblend.galaxy.tool_data
+    - bioblend.galaxy.tools
+    - bioblend.galaxy.toolshed
+    - bioblend.galaxy.users
+    - bioblend.galaxy.visual
+    - bioblend.galaxy.workflows
+    - bioblend.toolshed
+    - bioblend.toolshed.categories
+    - bioblend.toolshed.repositories
+    - bioblend.toolshed.tools
+    - bioblend.util
 
 about:
-  home: https://github.com/galaxy/bioblend
-  license: Academic Free License 3.0
-  summary:  A Python library for interacting with CloudMan and the Galaxy API
+  home: http://bioblend.readthedocs.org/
+  license: MIT License
+  summary: 'CloudMan and Galaxy API library'
+  license_family: MIT

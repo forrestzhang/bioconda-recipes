@@ -1,34 +1,37 @@
+{% set version = "2.12.0" %}
+{% set name = "IRanges" %}
+{% set bioc = "3.6" %}
+
 package:
-  name: bioconductor-iranges
-  version: 2.4.8
+  name: 'bioconductor-{{ name|lower }}'
+  version: '{{ version }}'
 source:
-  fn: IRanges_2.4.8.tar.gz
-  url: http://bioconductor.org/packages/release/bioc/src/contrib/IRanges_2.4.8.tar.gz
-  md5: 1bd76ca551e1430d559307bc2daef492
+  url:
+    - 'http://bioconductor.org/packages/{{ bioc }}/bioc/src/contrib/{{ name }}_{{ version }}.tar.gz'
+    - 'https://depot.galaxyproject.org/software/{{ name }}/{{ name }}_{{ version }}_src_all.tar.gz'
+  sha256: a51e7219a9adedcc3ec708db570dbe8ed1156b0bd2bc882fbf5577cad3fa0cef
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
 requirements:
-  build:
-    - bioconductor-biocgenerics >=0.15.10
-    - bioconductor-s4vectors >=0.8.4
-    - r >=3.1.0
+  host:
+    - 'bioconductor-biocgenerics >=0.23.3'
+    - 'bioconductor-s4vectors >=0.15.5'
+    - r-base
   run:
-    - bioconductor-biocgenerics >=0.15.10
-    - bioconductor-s4vectors >=0.8.4
-    - r >=3.1.0
+    - 'bioconductor-biocgenerics >=0.23.3'
+    - 'bioconductor-s4vectors >=0.15.5'
+    - r-base
 test:
   commands:
-    - $R -e "library('IRanges')"
+    - '$R -e "library(''{{ name }}'')"'
 about:
-  home: http://bioconductor.org/packages/release/bioc/html/IRanges.html
+  home: 'http://bioconductor.org/packages/{{ bioc }}/bioc/html/{{ name }}.html'
   license: Artistic-2.0
-  summary: 'The package provides efficient low-level and highly reusable S4 classes
-    for storing ranges of integers, RLE vectors (Run-Length Encoding), and, more generally,
-    data that can be organized sequentially (formally defined as Vector objects),
-    as well as views on these Vector objects. Efficient list-like classes are also
-    provided for storing big collections of instances of the basic classes. All classes
-    in the package use consistent naming and share the same rich and consistent "Vector
-    API" as much as possible.'
+  summary: 'Provides efficient low-level and highly reusable S4 classes for storing, manipulating and aggregating over annotated ranges of integers. Implements an algebra of range operations, including efficient algorithms for finding overlaps and nearest neighbors. Defines efficient list-like classes for storing, transforming and aggregating large grouped data, i.e., collections of atomic vectors and DataFrames.'
+
+extra:
+  identifiers:
+    - biotools:iranges

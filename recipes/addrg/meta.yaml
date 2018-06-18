@@ -1,0 +1,28 @@
+{% set version = "0.2.1" %}
+
+package:
+  name: addrg
+  version: {{ version }}
+
+build:
+  number: 2
+  skip: False
+
+source:
+  url: https://github.com/holtgrewe/addrg/archive/v{{ version }}.tar.gz
+  md5: 'bc87406382100ded3e701cc410107ac5'
+
+requirements:
+  build:
+  - {{ compiler('c') }}
+  - htslib
+  run:
+  - htslib
+
+about:
+  home: https://github.com/holtgrewe/addrg
+  license: MIT
+  summary: Add read group to BAM files
+test:
+  commands:
+  - '{ >&1 addrg || true; } | grep Usage'

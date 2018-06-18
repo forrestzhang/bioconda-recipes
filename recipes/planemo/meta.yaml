@@ -1,48 +1,58 @@
+{% set name = "planemo" %}
+{% set version = "0.48.0" %}
+{% set md5 = "d7f5d12ad04a83113632a2a989ea1938" %}
+
 package:
-  name: planemo
-  version: "0.29.1"
+  name: {{ name }}
+  version: {{ version }}
 
 source:
-  fn: planemo-0.29.1.tar.gz
-  url: https://pypi.python.org/packages/79/41/4d65672ebe325f7c101366521d9b9d6d2b1e5b828953985da9509f8dd96f/planemo-0.29.1.tar.gz
-  md5: 06c8b488ed86e66fc88adcad551bb50a
+  url: https://pypi.python.org/packages/9a/86/9f9d5425519c519dd91db3f992484d82c1a03413620cb1b2c6a0ca9bb540/planemo-0.48.0.tar.gz
+  md5: {{ md5 }}
 
 build:
-  preserve_egg_dir: True
-  skip: True # [py3k]
+  preserve_egg_dir: true
+  skip: true # [py3k]
   entry_points:
     - planemo=planemo.cli:planemo
-
-  number: 0
+  number: 1
+  script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
-  build:
-    - python
-    - six
-    - click
-    - pyaml
-    - bioblend
-    - jinja2
-    - virtualenv
-    - galaxy-lib >=16.7.10
+  host:
     - aenum
+    - bioblend >=0.10.0
+    - click
+    - galaxy-lib >=17.9.8
+    - jinja2
+    - pyaml
+    - python
+    - pip
+    - setuptools
+    - six >=1.7.0
+    - virtualenv
 
   run:
-    - python
-    - six
-    - click
-    - pyaml
-    - bioblend
-    - jinja2
-    - virtualenv
-    - galaxy-lib >=16.7.10
     - aenum
+    - bioblend >=0.8.0
+    - click
+    - docutils
+    - galaxy-lib >=17.9.8
+    - glob2
+    - jinja2
+    - pyaml
+    - python
+    - pyyaml
+    - six >=1.7.0
+    - virtualenv
+    - ephemeris
+    - gxformat2
 
 test:
-  # Python imports
   imports:
     - planemo
     - planemo.commands
+    - planemo.conda_verify
     - planemo.cwl
     - planemo.cwl.cwl2script
     - planemo.database
@@ -57,8 +67,8 @@ test:
     - planemo.xml
 
   commands:
-
-    - planemo --help
+    # click requires a unicode locale
+    - LANG=C.UTF-8 planemo --help
 
 about:
   home: https://github.com/galaxyproject/planemo

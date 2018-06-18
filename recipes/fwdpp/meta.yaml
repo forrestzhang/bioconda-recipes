@@ -1,0 +1,29 @@
+about:
+  home: 'https://www.github.com/molpopgen/fwdpp'
+  license: "https://raw.githubusercontent.com/molpopgen/fwdpp/master/LICENSE"
+  summary: "A C++ template library for forward-time population genetic simulation. "
+  doi: 10.1534/genetics.114.165019
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - zlib
+    - gsl
+    - boost >=1.60.0
+    - openblas
+  run:
+
+build:
+  number: 3
+
+package:
+  name: fwdpp
+  version: '0.5.7'
+
+test:
+  commands:
+    - fwdppConfig --version | grep 0.5.7 > /dev/null
+
+source:
+  url: http://github.com/molpopgen/fwdpp/archive/0.5.7.tar.gz
+  md5: 3ee0e8439f10dd9f370821537ca3ae5e

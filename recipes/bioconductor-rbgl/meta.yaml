@@ -1,27 +1,36 @@
+{% set version = "1.54.0" %}
+{% set name = "RBGL" %}
+{% set bioc = "3.6" %}
+
 package:
-  name: bioconductor-rbgl
-  version: 1.46.0
+  name: 'bioconductor-{{ name|lower }}'
+  version: '{{ version }}'
 source:
-  fn: RBGL_1.46.0.tar.gz
-  url: https://bioarchive.galaxyproject.org/RBGL_1.46.0.tar.gz
-  md5: 011d5620fa8feab9fbd8222916e100f7
+  url:
+    - 'http://bioconductor.org/packages/{{ bioc }}/bioc/src/contrib/{{ name }}_{{ version }}.tar.gz'
+    - 'https://depot.galaxyproject.org/software/{{ name }}/{{ name }}_{{ version }}_src_all.tar.gz'
+  sha256: 675b6e7cd9be8c007aba42477c83b478e8bdd92174bc45f6f529a11187684aa2
 build:
   number: 1
   rpaths:
     - lib/R/lib/
     - lib/
 requirements:
-  build:
+  host:
     - bioconductor-graph
-    - r
+    - r-base
   run:
     - bioconductor-graph
-    - r
+    - r-base
 test:
   commands:
-    - '$R -e "library(''RBGL'')"'
+    - '$R -e "library(''{{ name }}'')"'
 about:
-  home: http://bioconductor.org/packages/release/bioc/html/RBGL.html
+  home: 'http://bioconductor.org/packages/{{ bioc }}/bioc/html/{{ name }}.html'
   license: Artistic-2.0
-  summary: 'A fairly extensive and comprehensive interface to the graph algorithms
-    contained in the BOOST library.'
+  summary: 'A fairly extensive and comprehensive interface to the graph algorithms contained in the BOOST library.'
+
+extra:
+  identifiers:
+    - biotools:rbgl
+    - doi:10.1093/bioinformatics/bth458

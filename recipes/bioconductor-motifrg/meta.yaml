@@ -1,41 +1,46 @@
+{% set version = "1.22.0" %}
+{% set name = "motifRG" %}
+{% set bioc = "3.6" %}
+
 package:
-  name: bioconductor-motifrg
-  version: 1.14.0
-
+  name: 'bioconductor-{{ name|lower }}'
+  version: '{{ version }}'
 source:
-  fn: motifRG_1.14.0.tar.gz
-  url: https://bioc.ism.ac.jp/packages/3.2/bioc/src/contrib/motifRG_1.14.0.tar.gz
-  md5: 93dad828ef10c03507e478f546514482
-
+  url:
+    - 'http://bioconductor.org/packages/{{ bioc }}/bioc/src/contrib/{{ name }}_{{ version }}.tar.gz'
+    - 'https://depot.galaxyproject.org/software/{{ name }}/{{ name }}_{{ version }}_src_all.tar.gz'
+  sha256: 8438486c644597fbd4be6da5eb1d6eb6003e248df9c482d34dbbf34fb3a07fa4
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
-
 requirements:
-  build:
-    - r
-    - bioconductor-biostrings >=2.26
+  host:
+    - 'bioconductor-biostrings >=2.26'
+    - bioconductor-bsgenome
+    - bioconductor-bsgenome.hsapiens.ucsc.hg19
     - bioconductor-iranges
     - bioconductor-seqlogo
-    - bioconductor-bsgenome
     - bioconductor-xvector
-    - bioconductor-bsgenome.hsapiens.ucsc.hg19
+    - r-base
   run:
-    - r
-    - bioconductor-biostrings >=2.26
+    - 'bioconductor-biostrings >=2.26'
+    - bioconductor-bsgenome
+    - bioconductor-bsgenome.hsapiens.ucsc.hg19
     - bioconductor-iranges
     - bioconductor-seqlogo
-    - bioconductor-bsgenome
     - bioconductor-xvector
-    - bioconductor-bsgenome.hsapiens.ucsc.hg19
-
+    - r-base
 test:
   commands:
-    - $R -e "library('motifRG')"
-
+    - '$R -e "library(''{{ name }}'')"'
 about:
-  home: https://www.bioconductor.org/packages/release/bioc/html/motifRG.html
+  home: 'http://bioconductor.org/packages/{{ bioc }}/bioc/html/{{ name }}.html'
   license: Artistic-2.0
   summary: 'Tools for discriminative motif discovery using regression methods'
+
+extra:
+  identifiers:
+    - biotools:motifrg
+    - doi:10.1093/bioinformatics/btt615

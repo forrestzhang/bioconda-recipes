@@ -3,22 +3,20 @@ package:
   version: "0.46"
 
 source:
-  fn: Spiffy-0.46.tar.gz
   url: http://cpan.metacpan.org/authors/id/I/IN/INGY/Spiffy-0.46.tar.gz
   md5: 2ec7007c111a6bc2775bb7c57673a24b
 
 build:
-  number: 0
+  number: 2
 
 requirements:
   build:
-    - perl-threaded
+    - perl
 
   run:
-    - perl-threaded
+    - perl
 
 test:
-  # Perl 'use' tests
   imports:
     - Spiffy
 

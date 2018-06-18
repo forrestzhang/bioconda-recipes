@@ -1,0 +1,29 @@
+{% set version="0.14.1" %}
+
+package:
+  name: fastp
+  version: {{ version }}
+
+source:
+  url: https://github.com/OpenGene/fastp/archive/v{{ version }}.tar.gz
+  sha256: 212317afee62d27a19c0bd536fa23fd68974ff9f8d25b8a0992958ed27da5728
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - zlib
+
+  run:
+    - zlib
+
+test:
+  commands:
+    - fastp --help
+
+about:
+  home: https://github.com/OpenGene/fastp
+  license: MIT
+  summary: A FASTQ preprocessor with full features (QC/adapters/trimming/filtering/splitting...)

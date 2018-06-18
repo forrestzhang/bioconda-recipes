@@ -1,0 +1,29 @@
+package:
+  name: gvcftools
+  version: '0.17.0'
+
+
+source:
+  url: https://github.com/sequencing/gvcftools/releases/download/v0.17.0/gvcftools-0.17.0.tar.gz
+
+build:
+  number: 3
+  skip: True # [not linux]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - zlib
+
+  run:
+    - perl
+    - zlib
+
+test:
+  commands:
+    - extract_variants -h 2>&1 | grep "extract_variants extracts variants from a VCF file"
+
+about:
+  home: https://sites.google.com/site/gvcftools/home
+  license: MIT
+  summary: a set of utilities to help create and analyze Genome VCF (gVCF) files.
